@@ -24,15 +24,8 @@ object Company extends SkinnyCRUDMapper[Company] {
   )
 
 
-  belongsTo[CompanyType](CompanyType, (c, ct) => c.copy(companyType = ct))
+  belongsTo[CompanyType](CompanyType, (c, ct) => c.copy(companyType = ct)).byDefault
 
-  /*
-  val companyTypeRef =
-    belongsTo[CompanyType](CompanyType, (c, ct) => c.copy(companyType = ct))
-      .includes[CompanyType]((companies, companyTypes) => companies.map { c =>
-      c.copy(companyType = Some(CompanyType(1, "aaa")))
-    })
-    */
 }
 
 case class Person(id: Long, name: String, companyId: Option[Long], company: Option[Company] = None)
